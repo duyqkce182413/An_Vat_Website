@@ -1,76 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
     <servlet>
-        <servlet-name>NewServlet1</servlet-name>
-        <servlet-class>NewServlet1</servlet-class>
+        <servlet-name>accountControl</servlet-name>
+        <servlet-class>controller.accountController.accountControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>loginControl</servlet-name>
-        <servlet-class>controller.accountController.loginControl</servlet-class>
+        <servlet-name>adminAccountCRUDController</servlet-name>
+        <servlet-class>controller.productController.adminAccountCRUDController</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ProductControl</servlet-name>
+        <servlet-class>controller.productController.ProductControl</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>getAllProductsControl</servlet-name>
-        <servlet-class>controller.homeController.getAllProductsControl</servlet-class>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.homeController.HomeController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>adminProductCRUD</servlet-name>
-        <servlet-class>controller.productController.adminProductCRUD</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>searchProductByNameCategory</servlet-name>
-        <servlet-class>controller.homeController.searchProductByNameCategory</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>searchProductByName</servlet-name>
-        <servlet-class>controller.homeController.searchProductByName</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>getProductByName</servlet-name>
-        <servlet-class>controller.homeController.getProductByName</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>getProductByCategoryID</servlet-name>
-        <servlet-class>controller.homeController.getProductByCategoryID</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>getAllAccount</servlet-name>
-        <servlet-class>controller.productController.getAllAccount</servlet-class>
-    </servlet>
+
     <servlet-mapping>
-        <servlet-name>NewServlet1</servlet-name>
-        <url-pattern>/NewServlet1</url-pattern>
+        <servlet-name>accountControl</servlet-name>
+        <url-pattern>/login-form</url-pattern>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/logout</url-pattern>
+        <url-pattern>/register</url-pattern>
+        <url-pattern>/updateaccount</url-pattern>
+        <url-pattern>/accountcontrol</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>loginControl</servlet-name>
-        <url-pattern>/loginControl</url-pattern>
+        <servlet-name>adminAccountCRUDController</servlet-name>
+        <url-pattern>/admin-account-crud</url-pattern>
+        <url-pattern>/admin-delete-account</url-pattern>
+        <url-pattern>/admin-add-account</url-pattern>
+        <url-pattern>/admin-edit-account</url-pattern>
+        <url-pattern>/admin-update-account</url-pattern>
+        <url-pattern>/admin-search-account</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>getAllProductsControl</servlet-name>
-        <url-pattern>/getallproduct</url-pattern>
+        <servlet-name>ProductControl</servlet-name>
+        <url-pattern>/new</url-pattern>
+        <url-pattern>/insert</url-pattern>
+        <url-pattern>/delete</url-pattern>
+        <url-pattern>/edit</url-pattern>
+        <url-pattern>/searchProduct</url-pattern>
+        <url-pattern>/filterByCategory</url-pattern>
+        <url-pattern>/newedit</url-pattern>
+        <url-pattern>/productcontrol</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>adminProductCRUD</servlet-name>
-        <url-pattern>/adminproductcrud</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>searchProductByNameCategory</servlet-name>
-        <url-pattern>/searchproduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>searchProductByName</servlet-name>
-        <url-pattern>/searchproductbyname</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>getProductByName</servlet-name>
-        <url-pattern>/getproductbyname</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>getProductByCategoryID</servlet-name>
-        <url-pattern>/getproductbycategoryid</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>getAllAccount</servlet-name>
-        <url-pattern>/getallaccount</url-pattern>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+        <url-pattern>/filter-by-categoryid</url-pattern>
+        <url-pattern>/home-search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

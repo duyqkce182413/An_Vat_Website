@@ -71,9 +71,9 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <h3>Admin Dashboard</h3>
-                    <a href="admin_category.jsp"><i class="fas fa-list"></i> Category Management</a>
-                    <a href="admin_product_crud.jsp"><i class="fas fa-box"></i> Product Management</a>
-                    <a href="admin_account.jsp"><i class="fas fa-users"></i> Account Management</a>
+                    <a href="admin_category_crud.jsp"><i class="fas fa-list"></i> Category Management</a>
+                    <a href="productcontrol"><i class="fas fa-box"></i> Product Management</a>
+                    <a href="admin-account-crud"><i class="fas fa-users"></i> Account Management</a>
                 </div>
 
                 <!-- Main content -->

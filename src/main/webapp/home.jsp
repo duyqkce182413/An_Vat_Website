@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Register Form</title>
+        <title>Home</title>
         <!-- font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
               integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -16,7 +16,9 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
               rel="stylesheet">
-        <link rel="stylesheet" href="./CSS/Style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/Style.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/HeaderAndFooter_CSS.css">
+
     </head>
 
     <body>
@@ -29,7 +31,7 @@
             </header> -->
 
             <!-- Thanh tìm kiếm và menu trong cùng một form -->
-            <form action="getproductbyname" method="GET">
+            <form action="home-search" method="GET">
                 <!-- Thanh tìm kiếm -->
                 <div class="search-bar">
                     <div class="container">
@@ -40,17 +42,17 @@
                     </div>
                 </div>
             </form>
-            
+
             <!-- Product Section + Cart -->
-                <div class="container my-5">
-                    <!-- Menu -->
-                    <div class="menu-nav">
-                        <a href="getallproduct" class="col-md">Tất cả</a>
-                    <c:forEach items="${requestScope.categorys}" var="c">
-                        <a href="getproductbycategoryid?categoryid=${c.id}" class="col-md">${c.name}</a>
-                    </c:forEach>
-                </div>
+            <div class="container my-5">
+                <!-- Menu -->
+                <div class="menu-nav">
+                    <a href="/home" class="col-md">Tất cả</a>
+                <c:forEach items="${requestScope.categorys}" var="c">
+                    <a href="filter-by-categoryid?categoryid=${c.id}" class="col-md">${c.name}</a>
+                </c:forEach>
             </div>
+        </div>
 
         <div class="container-fluid px-5">
             <div class="row">
@@ -77,7 +79,7 @@
                             <div class="col-md-3">
                                 <div class="card product-card">
                                     <!-- Sử dụng p.imageUrl để hiển thị hình ảnh đúng -->
-                                    <a href="product_detail.jsp"><img src="./image/${p.imageUrl}" class="card-img-top" alt="${p.name}"></a>
+                                    <a href="product_detail.jsp"><img src="${p.imageUrl}" class="card-img-top" alt="${p.name}"></a>
                                     <div class="card-body">
                                         <a href="product_detail.jsp"><h5 class="card-title">${p.name}</h5></a>
                                         <p class="card-text">${p.price}</p>

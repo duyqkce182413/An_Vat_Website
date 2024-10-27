@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,11 +26,11 @@
     <body>
         <jsp:include page="header.jsp"></jsp:include>
 
-        <div class="container mt-5">
-            <h1>Add New Product</h1>
+            <div class="container mt-5">
+                <h1>Add New Product</h1>
 
-            <!-- Form to add new product -->
-            <form action="add_product" method="post">
+           
+                <form action="insert" menewthod="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Product Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -46,8 +47,8 @@
                     <label for="category" class="form-label">Category</label>
                     <select class="form-select" id="category" name="categoryid" required>
                         <option value="">Select Category</option>
-                        <c:forEach var="category" items="${categoryList}">
-                            <option value="${category.id}">${category.name}</option>
+                        <c:forEach var="category" items="${categorys}">
+                            <option name="categoryid" value="${category.id}"><c:out value="${category.name}"></c:out></option>
                         </c:forEach>
                     </select>
                 </div>

@@ -26,14 +26,12 @@ public class AccountDAO extends DAO{
        
             prepareStatement.setString(1, c.getPassword());
             prepareStatement.setString(2, c.getEmail());
-            prepareStatement.setString(3, c.getPhoneNumber());
+            prepareStatement.setString(3, c.getPhone_number());
             prepareStatement.setString(4, c.getUsername());
             prepareStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
-
-    
-    
+ 
 }

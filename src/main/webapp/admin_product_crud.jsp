@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -89,9 +89,9 @@
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <h3>Admin Dashboard</h3>
-                    <a href="admin_category.jsp"><i class="fas fa-list"></i> Category Management</a>
-                    <a href="admin_product_crud.jsp"><i class="fas fa-box"></i> Product Management</a>
-                    <a href="admin_account.jsp"><i class="fas fa-users"></i> Account Management</a>
+                    <a href="admin_category_crud.jsp"><i class="fas fa-list"></i> Category Management</a>
+                    <a href="productcontrol"><i class="fas fa-box"></i> Product Management</a>
+                    <a href="admin-account-crud"><i class="fas fa-users"></i> Account Management</a>
                 </div>
 
                 <!-- Main content -->
@@ -99,35 +99,37 @@
                     <h1>Product Management</h1>
 
                     <!-- Search Form -->
-                    <form method="GET" action="admin_product_crud.jsp" class="mb-3">
+                    <!-- Form tìm kiếm -->
+                    <form method="GET" action="searchProduct" class="mb-3">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="search" class="form-control" placeholder="Search product by name" value="${param.search}">
                         </div>
-                        <div class="col-md-4">ss="form-select">
-                            <option value="">All Categories</option>
-                            <c:forEach var="category" items="${categoryList}">
-                                <option value="${category.id}" ${category.id == param.category ? 'selected' : ''}>
-                                    ${category.name}
-                                </option>
-                            </c:forEach>
-                            <select name="category" class="form-select">
-                                <option value="">All Categories</option>
-                                <c:forEach var="category" items="${categoryList}">
-                                    <option value="${category.id}" ${category.id == param.category ? 'selected' : ''}>
-                                        ${category.name}
-                                    </option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <button type="submit" class="btn btn-primary w-100"><i class="fas fa-search"></i> Search</button>
                         </div>
                     </div>
                 </form>
 
+                <!-- Form phân loại theo danh mục -->
+                <form method="GET" action="filterByCategory" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select name="category" class="form-select">
+                                <option value="">All Categories</option>
+                                <c:forEach var="category" items="${categorys}">
+                                    <option value="${category.id}" ${param.category == category.id ? 'selected' : ''}>${category.name}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-filter"></i> Filter</button>
+                        </div>
+                    </div>
+                </form>
+
                 <!-- Add Product Button -->
-                <a href="add_product.jsp" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add New Product</a>
+                <a href="<%=request.getContextPath()%>/new" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add New Product</a>
 
                 <!-- Product Table -->
                 <table class="table table-bordered">
@@ -143,21 +145,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="product" items="${requestScope.products}">
-                        <tr>
-                            <td>${product.id}</td>
-                            <td>${product.name}</td>
-                            <td>${product.price}</td>
-                            <td>${product.quantity}</td>
-                            <td>${product.categoryid}</td>
-                            <td><img src="${product.imageurl}" alt="${product.name}" style="width: 50px; height: auto;"></td>
-                            <td>
-                                <a href="edit_product.jsp?id=${product.id}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="delete_product?id=${product.id}" class="btn btn-danger btn-sm"
-                                   onclick="return confirm('Are you sure you want to delete this product?');"><i class="fas fa-trash"></i> Delete</a>
-                            </td>   
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var="product" items="${requestScope.products}">
+                            <tr>
+                                <td>${product.id}</td>
+                                <td>${product.name}</td>
+                                <td>${product.price}</td>
+                                <td>${product.quantity}</td>
+                                <td>${product.categoryid}</td>
+                                <td><img src="${product.imageUrl}" alt="${product.name}" style="width: 50px; height: auto;"></td>
+                                <td>
+                                    <a href="newedit?id=${product.id}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    <a href="delete?id=${product.id}" class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Are you sure you want to delete this product?');"><i class="fas fa-trash"></i> Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

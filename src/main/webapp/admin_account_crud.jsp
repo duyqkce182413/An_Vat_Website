@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +9,8 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
               integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-              crossorigin="anonymous" referrerpolicy="no-referrer" />
+              crossorigin="anony
+              mous" referrerpolicy="no-referrer" />
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
               rel="stylesheet">
@@ -73,24 +74,24 @@
     <body>
         <jsp:include page="header.jsp"></jsp:include>
 
-        <div class="wrapper clearfix">
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <h3>Admin Dashboard</h3>
-                <a href="admin_category.jsp"><i class="fas fa-list"></i> Category Management</a>
-                <a href="admin_product_crud.jsp"><i class="fas fa-box"></i> Product Management</a>
-                <a href="admin_account.jsp"><i class="fas fa-users"></i> Account Management</a>
-            </div>
+            <div class="wrapper clearfix">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <h3>Admin Dashboard</h3>
+                    <a href="admin_category_crud.jsp"><i class="fas fa-list"></i> Category Management</a>
+                    <a href="productcontrol"><i class="fas fa-box"></i> Product Management</a>
+                    <a href="admin-account-crud"><i class="fas fa-users"></i> Account Management</a>
+                </div>
 
-            <!-- Main content -->
-            <div class="content">
-                <h1>Account Management</h1>
+                <!-- Main content -->
+                <div class="content">
+                    <h1>Account Management</h1>
 
-                <!-- Search Form -->
-                <form method="GET" action="admin_account.jsp" class="mb-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" name="search" class="form-control" placeholder="Search account by username" value="${param.search}">
+                    <!-- Search Form -->
+                    <form method="GET" action="admin-search-account" class="mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="search" class="form-control" placeholder="Search account by username" value="${param.search}">
                         </div>
                         <div class="col-md-2">
                             <button type="submit" class="btn btn-primary w-100"><i class="fas fa-search"></i> Search</button>
@@ -99,7 +100,7 @@
                 </form>
 
                 <!-- Add Account Button -->
-                <a href="add_account.jsp" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add New Account</a>
+                <a href="admin_add_account.jsp" class="btn btn-success mb-3"><i class="fas fa-plus"></i> Add New Account</a>
 
                 <!-- Account Table -->
                 <table class="table table-bordered">
@@ -107,31 +108,37 @@
                         <tr>
                             <th>ID</th>
                             <th>Username</th>
+                            <th>Password</th>
                             <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Date created</th>
                             <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach var="account" items="${requestScope.accounts}">
-                        <tr>
-                            <td>${account.id}</td>
-                            <td>${account.username}</td>
-                            <td>${account.email}</td>
-                            <td>${account.isAdmin}</td>
-                            <td>
-                                <a href="edit_account.jsp?id=${account.id}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                                <a href="delete_account?id=${account.id}" class="btn btn-danger btn-sm"
-                                   onclick="return confirm('Are you sure you want to delete this account?');"><i class="fas fa-trash"></i> Delete</a>
-                            </td>   
-                        </tr>
-                    </c:forEach>
+                        <c:forEach var="a" items="${accounts}">
+
+                            <tr>
+                                <td>${a.id}</td>
+                                <td>${a.username}</td>
+                                <td>${a.password}</td>
+                                <td>${a.email}</td>
+                                <td>${a.phone_number}</td>
+                                <td>${a.createdAt}</td>
+                                <td>${a.isAdmin() ? "Admin" : "User"}</td>
+
+                                <td>
+                                    <a href="/admin-edit-account?id=${a.id}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                                    <a href="/admin-delete-account?id=${a.id}" class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Are you sure you want to delete this account?');"><i class="fas fa-trash"></i> Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <jsp:include page="footer.jsp"></jsp:include>
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

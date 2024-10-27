@@ -18,44 +18,38 @@ public class Account {
     private String email;
     private Date createdAt;
     private boolean isAdmin;
-    private String phoneNumber;
+    private String phone_number;
     private List<Address> addresses;
     private List<Cart> carts;
 
+    public Account() {
+    }
     // Constructor
-    public Account(int id, String username, String password, String email, Date createdAt, boolean isAdmin) {
-        this.id = id;
+    public Account(String username, String password, String email, String phone_number) {
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.phone_number = phone_number;
+    }
+    
+    public Account(int id, String username, String password, String email, Date createdAt, boolean isAdmin, String phone_number) {
+        this.id = id;
+        this.username = username;
+        this.password = password;   
         this.email = email;
         this.createdAt = createdAt;
         this.isAdmin = isAdmin;
-    }
-
-    public Account(int id, String username, String email, boolean isAdmin) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.isAdmin = isAdmin;
+        this.phone_number = phone_number;
     }
     
-    public Account(String username, String password, String email, String phoneNumber) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
-    
-    public Account(int id, String username, String password, String email, Date createdAt, boolean isAdmin,String phone_number) {
+    public Account(int id, String username, String password, String email, String phone_number, boolean isAdmin) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.createdAt = createdAt;
+        this.phone_number = phone_number;
         this.isAdmin = isAdmin;
-        this.phoneNumber = phoneNumber;
     }
-    
 
     // Getters and Setters
     public int getId() {
@@ -98,16 +92,15 @@ public class Account {
         this.createdAt = createdAt;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
-    
-    
 
+  
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -131,5 +124,12 @@ public class Account {
     public void setCarts(List<Cart> carts) {
         this.carts = carts;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", createdAt=" + createdAt + ", isAdmin=" + isAdmin + ", phone_number=" + phone_number + ", addresses=" + addresses + ", carts=" + carts + '}';
+    }
+    
+    
 }
 
